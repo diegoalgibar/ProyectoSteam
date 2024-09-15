@@ -1,10 +1,51 @@
 header{
-background-color:rgb(169, 76, 255);
+    background: rgb(118,0,255);
+    background: linear-gradient(0deg, rgba(118,0,255,1) 0%, rgba(169,76,255,1) 76%);
 }
-nav{
-    background-color:rgb(169, 76, 255);
+header nav{
+    background: rgb(118,0,255);
+    background: linear-gradient(0deg, rgba(118,0,255,1) 0%, rgba(169,76,255,1) 76%);
+}
 
+nav>img{
+    padding-left: 5px;
+    width: 50px;
+}
+header,main{
+    padding: 0 20%
+}
+main{
+    background-color: white;
+}
+.btnColor{
+    background: rgb(118,0,255);
+    background: linear-gradient(0deg, rgba(118,0,255,1) 0%, rgba(169,76,255,1) 76%);
+}
+.card{
+    margin: 2px;
+    max-height: 700px;
 }
 body{
-    background-color: rgb(58, 58, 58);
+    background-color: whitesmoke;
+}
+.card img{
+    width: 300px;
+    margin: auto;
+}
+.card-body>div{
+    overflow-y: scroll;
+    max-height: 100px;
+}
+body{
+    scrollbar-gutter: stable both-edges;
+}
+section{
+    margin: 20px;
+}
+section#secCron>div{
+    border-radius: 5px;
+}
+.crontext,nav#cron-nav{
+    max-height: 400px;
+    overflow-y: scroll;
 }

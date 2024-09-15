@@ -1,44 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StealTag</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/style.css">
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <a class="navbar-brand px-3" href="#">StealTag</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav px-3">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">Inicio</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Características</a>
-                </li>
-                <li class="nav-item"><a href="" class="nav-link">Materiales</a></li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Objetivo</a>
-                </li>
-                <li><a class="nav-link" href="#">Integrantes</a>
-                </li>
-              </ul>
-              <span class=""></span>
-            </div>
-          </nav>
-    </header>
-    <main>
-      <section class="text-center">
-        <h1>StealTag</h1>
 
-      </section>
-    </main>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StealTag</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <img src="assets/res/Microbit-logo-stacked.png" alt="">
+      <a class="navbar-brand px-3" href="#">StealTag</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav px-3">
+          <li class="nav-item active">
+            <a class="nav-link" href="#secInicio">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#secCarac">Características</a>
+          </li>
+          <li class="nav-item"><a href="#secMat" class="nav-link">Materiales</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="#secObj">Objetivo</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Integrantes
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Luis Durán</a></li>
+              <li><a class="dropdown-item" href="#">Gastón Pérez</a></li>
+              <li><a class="dropdown-item" href="#">Diego Algibar</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#secCron" class="nav-link">Cronología</a>
+          </li>
+        </ul>
+        <span class=""></span>
+      </div>
+    </nav>
+  </header>
+  <main class="container">
+    <section id="secInicio" class="text-center">
+      <div class="container row">
+        <h1>StealTag</h1>
+        <div class="row">
+          <div class="col-12 col-sm-6">
+            <div class="card">
+              <img src="/assets/res/24250_microbit .png" alt="" class="card-img-top">
+              <div class="card-body" id="descMicrobit">
+                <h4 class="card-title">Microbit</h5>
+                <div>
+                  <p class="card-text">
+                    El micro:bit es una pequeña tarjeta programable diseñada para que aprender a programar sea fácil,
+                    divertido y accesible para todos. Aquí tienes algunos detalles clave:
+                  <ul>
+                    <li>Tamaño y forma: El micro:bit tiene un tamaño de aproximadamente 4x5 cm, lo que lo hace portátil
+                      y
+                      fácil de manipular.</li>
+                    <li>Funciones visuales: Su parte frontal cuenta con una pantalla compuesta por 25 LED organizados en
+                      una
+                      cuadrícula de 5x5. Estos LED pueden mostrar imágenes, palabras y números. Además, actúan como
+                      sensores de luz.</li>
+                    <li>
+                      Botones: Dispone de dos botones en la parte frontal que se pueden usar por separado o juntos para
+                      activar acciones.
+                    </li>
+                    <li>
+                      Conectividad: El micro:bit puede comunicarse con otros micro:bits mediante radio y también
+                      conectarse a otros dispositivos mediante Bluetooth.
+                    </li>
+                    <li>
+                      Sensores: Incluye varios sensores:
+                      <ul>
+                        <li>
+                          Acelerómetro: Mide las fuerzas en tres dimensiones, incluida la gravedad. Puedes usarlo para
+                          detectar movimientos o agitar el micro:bit.
+                        </li>
+                        <li>
+                          Brújula: Encuentra el Norte magnético o mide campos magnéticos en tres dimensiones.
+                        </li>
+                        <li>
+                          Sensor de temperatura: Permite medir la temperatura del entorno.
+                        </li>
+                        <li>
+                          Micrófono (en la versión más reciente): Mide niveles de sonido y reacciona a ruidos fuertes o
+                          suaves.
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      Pines GPIO: Los pines GPIO te permiten conectar otros dispositivos electrónicos, como auriculares,
+                      sensores táctiles y más, para expandir las posibilidades del micro:bit.
+                    </li>
+                  </ul>
+                  </p>
+                </div>
+                <a href="https://microbit.org/es-es/" class="btn btnColor m-2">Ir a la página</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6">
+            <div class="card">
+              <img src="/assets/res/Python.svg.png" alt="" class="card-img-top">
+              <div class="card-body">
+                <h4 class="card-title">Python</h4>
+                <div>
+                  <p class="card-text">Python es un lenguaje de alto nivel interpretado que destaca por su legibilidad y
+                    su enfoque en la simplicidad. Algunas de sus características clave son:
+                  <ul>
+                    <li>Legibilidad: La filosofía de Python se basa en escribir código claro y fácil de entender. Su
+                      sintaxis utiliza sangrías en lugar de llaves, lo que lo hace más parecido al lenguaje humano.</li>
+                    <li>Multiparadigma: Python admite varios enfoques de programación, incluyendo la orientación a
+                      objetos, la programación imperativa y, en menor medida, la programación funcional.</li>
+                    <li>Portabilidad: Puedes ejecutar el mismo código Python en diferentes plataformas sin necesidad de
+                      modificaciones, lo que lo convierte en una excelente opción para proyectos multiplataforma.</li>
+                  </ul>
+                  </p>
+                </div>
+                <a href="https://python.org" class="btn btnColor m-2">Ir a la página</a>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <section id="secCarac">
+      <div class="container row">
+      <div class="container col">
+        <div class="card text-start">
+          <div class="card-body">
+            <h4 class="card-title">Características del proyecto:</h4>
+            <p class="card-text">
+            <ul>
+              <li>Nombre: Detector de movimiento a distancia para detectar robos</li>
+              <li>Descripcion: Usando 2 o mas microbits, por medio de radiofrecuencia detectar el alejamiento de un
+                objeto
+                y
+                avisar al emisor/receptor que el objeto se aleja de un rango "X".El mismo al alejarse emitirá un sonido
+                (por
+                medio de un buzzer) indicando que el objeto fue "robado".</li>
+            </ul>
+            </p>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+    <section id="secCron">
+      <div class="row wrapper border p-3">
+        <div class="col-4">
+          <nav id="cron-nav" class="h-100 flex-column align-items-stretch pe-4 border-end">
+            <nav class="nav nav-pills flex-column">
+              <a class="nav-link" href="#item-1">21/08/2024 1</a>
+              <nav class="nav nav-pills flex-column">
+                <a class="nav-link ms-3 my-1" href="#item-1-1">1-1</a>
+                <a class="nav-link ms-3 my-1" href="#item-1-2">1-2</a>
+              </nav>
+              <a class="nav-link" href="#item-2">28/08/2024 2</a>
+              <nav class="nav-pills flex-column">
+                <a class="nav-link ms-3 my-1" href="#item-2-1">2-1</a>
+                <a class="nav-link ms-3 my-1" href="#item-2-2">2-2</a>
+                <a class="nav-link ms-3 my-1" href="#item-2-3">2-3</a>
+
+
+              </nav>
+              <a class="nav-link" href="#item-3">4/09/2024 3</a>
+              <nav class="nav nav-pills flex-column">
+                <a class="nav-link ms-3 my-1" href="#item-3-1">3-1</a>
+                <a class="nav-link ms-3 my-1" href="#item-3-2">3-2</a>
+                <a class="nav-link ms-3 my-1" href="#item-3-3">3-3</a>
+              </nav>
+              <a class="nav-link" href="#item-4">11/09/2024 4</a>
+              <nav class="nav nav-pills flex-column">
+                <a class="nav-link ms-3 my-1" href="#item-4-1">4-1</a>
+                <a class="nav-link ms-3 my-1" href="#item-4-2">4-2</a>
+              </nav>
+            </nav>
+          </nav>
+        </div>
+      
+        <div class="col-8">
+          <div data-bs-spy="scroll" data-bs-target="#cron-nav" data-bs-smooth-scroll="true" class="crontext" tabindex="0">
+            <div id="item-1">
+              <h4>21/08/2024</h4>
+            </div>
+            <div id="item-1-1">
+              
+              <p class="ms-3">-Procedemos a hacer una lluvia de ideas para realizar el proyecto.</p>
+            </div>
+            <div id="item-1-2">
+              
+              <p class="ms-3">-Elegimos mediante votación hacer un dispositivo que por medio de radiofrecuencia entre ambos microbit detecte un cambio en la distancia y avise mediante el buzzer.</p>
+            </div>
+            <div id="item-2">
+              <h4>28/08/2024 2</h4>
+            </div>
+            <div id="item-2-1">
+              
+              <p class="ms-3">-Comenzamos a programar en python el función de ambos microbit (uno como emisor y otro como receptor)</p>
+            </div>
+            
+            <div id="item-2-2">
+              
+              <p class="ms-3">-Hablamos con el profe y diagramamos la funcionalidad de que cuando se aleje el microbit emisor del receptor el mismo emita un sonido por medio del buzzer.</p>
+            </div>
+            
+            <div id="item-2-3">
+              
+              <p class="ms-3">-Agregamos el motor de vibración para complementar al buzzer en el aviso.</p>
+            </div>
+            <div id="item-3">
+              <h4>4/09/2024 3</h4>
+            </div>
+            <div id="item-3-1">
+              
+              <p class="ms-3">-Seguimos avanzando en el código con distintas funcionalidades como: mostrar una calavera cuando el receptor reciba la señal en un umbral bajo de potencia.</p>
+            </div>
+            <div id="item-3-2">
+              
+              <p class="ms-3">-Comenzamos a diseñar la página web con bootstrap , HTML y css. Decidimos subirla a a internet mediante GitHub pages.</p>
+            </div>
+            <div id="item-3-3">
+              
+              <p class="ms-3">-Iniciamos con el ambiente de testing funcional utilizando ambos microbits y moviéndonos físicamente de lugar para ver el tema de la señal. Notamos que la medición de señal es muy inestable para establecer un rango para la desconexión del receptor con el emisor.</p>
+            </div>
+            <div id="item-4">
+              <h4>11/09/2024 4</h4>
+              <div id="item-4-1">
+                
+                <p class="ms-3">-Proseguimos con las pruebas de radio entre los microbits. Depuramos el código eliminando detalles que no eran relevantes y mejoramos el funcionamiento.</p>
+              </div>
+              <div id="item-4-2">
+                
+                <p class="ms-3">-Investigamos formas de implementar bluetooth pero nos topamos que no puede emitir radio y bluetooth al mismo tiempo.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+    crossorigin="anonymous"></script>
 </body>
+
 </html>
