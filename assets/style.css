@@ -7,7 +7,7 @@ header nav{
     background: linear-gradient(0deg, rgba(118,0,255,1) 0%, rgba(169,76,255,1) 76%);
 }
 
-nav>img{
+nav>a>img{
     padding-left: 5px;
     width: 50px;
 }
@@ -29,7 +29,8 @@ body{
     background-color: whitesmoke;
 }
 .card img{
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     margin: auto;
 }
 .card-body>div{
@@ -48,4 +49,8 @@ section#secCron>div{
 .crontext,nav#cron-nav{
     max-height: 400px;
     overflow-y: scroll;
+}
+.descMat{
+    max-height: 200px;
+    overflow-y: auto;
 }
