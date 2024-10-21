@@ -232,33 +232,33 @@
         <div class="row wrapper border rounded-2 p-3">
           <div class="col-4">
             <nav id="cron-nav" class="h-100 flex-column align-items-stretch pe-4 border-end">
+              <h2>Avances del proyecto</h2>
               <nav class="nav nav-pills flex-column">
                 <a class="nav-link" href="#item-1">21/08/2024</a>
                 <nav class="nav nav-pills flex-column">
-                  <a class="nav-link ms-3 my-1" href="#item-1-1">1-1</a>
-                  <a class="nav-link ms-3 my-1" href="#item-1-2">1-2</a>
                 </nav>
                 <a class="nav-link" href="#item-2">28/08/2024</a>
                 <nav class="nav-pills flex-column">
-                  <a class="nav-link ms-3 my-1" href="#item-2-1">2-1</a>
-                  <a class="nav-link ms-3 my-1" href="#item-2-2">2-2</a>
-                  <a class="nav-link ms-3 my-1" href="#item-2-3">2-3</a>
 
 
                 </nav>
                 <a class="nav-link" href="#item-3">4/09/2024</a>
                 <nav class="nav nav-pills flex-column">
-                  <a class="nav-link ms-3 my-1" href="#item-3-1">3-1</a>
-                  <a class="nav-link ms-3 my-1" href="#item-3-2">3-2</a>
-                  <a class="nav-link ms-3 my-1" href="#item-3-3">3-3</a>
                 </nav>
                 <a class="nav-link" href="#item-4">11/09/2024</a>
                 <nav class="nav nav-pills flex-column">
-                  <a class="nav-link ms-3 my-1" href="#item-4-1">4-1</a>
                 </nav>
-                <a class="nav-link" href="#item-4">18/09/2024</a>
+                <a class="nav-link" href="#item-5">18/09/2024</a>
                 <nav class="nav nav-pills flex-column">
-                  <a class="nav-link ms-3 my-1" href="#item-5-1">5-1</a>
+                </nav>
+                <a class="nav-link" href="#item-6">25/09/2024</a>
+                <nav class="nav nav-pills flex-column">
+                </nav>
+                <a class="nav-link" href="#item-7">02/10/2024</a>
+                <nav class="nav nav-pills flex-column">
+                </nav>
+                <a class="nav-link" href="#item-8">09/10/2024</a>
+                <nav class="nav nav-pills flex-column">
                 </nav>
               </nav>
             </nav>
@@ -322,10 +322,13 @@
                 <h4>11/09/2024</h4>
                 <div id="item-4-1">
 
-                  <p class="ms-3">-Vemos caso en el cual el rango de radiofrecuencia del microbit no es como lo declara en la página del fabricante. Ésto ya que intentamos programar para que a cierta distancia el emisor detecte que el receptor está "fuera de rango" y así avisar. También intentamos desarrollar que al encontrarse fuera de dicho rango se apague con la intención de ahorrar batería.
+                  <p class="ms-3">-Vemos caso en el cual el rango de radiofrecuencia del microbit no es como lo declara
+                    en la página del fabricante. Ésto ya que intentamos programar para que a cierta distancia el emisor
+                    detecte que el receptor está "fuera de rango" y así avisar. También intentamos desarrollar que al
+                    encontrarse fuera de dicho rango se apague con la intención de ahorrar batería.
                   </p>
                 </div>
-               </div>
+              </div>
               <div id="item-5"></div>
               <h4>18/09/2024</h4>
               <div id="item-5-1">
@@ -334,11 +337,336 @@
                   poder solucionar tema de radiofrecuencia. Pruebo con un microbit de un compañero en casa el motor de
                   vibración y funciona correctamente (posteriormente se harán pruebas en clase con emisor/receptor).</p>
               </div>
+              <div id="item-6"></div>
+              <h4>25/09/2024</h4>
+              <div id="item-5-1">
+
+                <p class="ms-3">-Mostramos código hasta la fecha:</p>
+                <button type="button" class="btn btnColor btn-primary text" data-bs-toggle="modal"
+                  data-bs-target="#staticBackdrop">
+                  Ver código
+                </button>
+                <div class="modal fade modal-xl" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Código 25/09/2024</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body text-start">
+                        <pre>
+EMISOR:
+from microbit import *
+import radio
+
+# Configurar la radio
+radio.on()
+radio.config(channel=7)  # Elige un canal para que los dos micro:bits se comuniquen
+
+while True:
+    # Detectar si el micro:bit es sacudido bruscamente
+    if accelerometer.was_gesture("shake"):
+        # Obtener los datos del acelerómetro
+        x = accelerometer.get_x()
+        y = accelerometer.get_y()
+        z = accelerometer.get_z()
+        
+        # Crear el mensaje con los datos del acelerómetro
+        mensaje = "{},{},{}".format(x, y, z)
+        
+        # Enviar el mensaje por radio
+        radio.send(mensaje)
+        
+        # Reproducir un sonido fuerte en el buzzer conectado a pin0
+        display.show(Image.SURPRISED)
+        pin0.write_digital(1)  # Activa el buzzer
+        sleep(1000)  # Mantener el buzzer activo durante 1 segundo
+        pin0.write_digital(0)  # Desactivar el buzzer
+        display.clear()
+        
+    sleep(100)  # Evitar un bucle demasiado rápido
+
+----------------------------------------------------------------------------------------------------------
+
+RECEPTOR:
+from microbit import *
+import radio
+
+# Configurar la radio
+radio.on()
+radio.config(channel=7)  # Asegúrate de que el canal sea el mismo que el emisor
+
+while True:
+    # Recibir mensajes por radio
+    mensaje = radio.receive()
+    
+    if mensaje:
+        # El mensaje contiene los valores del acelerómetro en formato "x,y,z"
+        datos = mensaje.split(",")
+        
+        if len(datos) == 3:
+            try:
+                x = int(datos[0])
+                y = int(datos[1])
+                z = int(datos[2])
+                
+                # Mostrar los valores del acelerómetro en el micro:bit receptor
+                display.scroll("X:{} Y:{} Z:{}".format(x, y, z))
+                
+                # Reproducir un sonido fuerte en el buzzer del receptor
+                display.show(Image.SURPRISED)
+                pin0.write_digital(1)  # Activa el buzzer
+                sleep(1000)  # Mantener el buzzer activo durante 1 segundo
+                pin0.write_digital(0)  # Desactivar el buzzer
+                display.clear()
+            except:
+                pass  # Evitar errores si los datos no son válidos
+    sleep(100)
+                    </pre>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="item-7"></div>
+              <h4>02/10/2024</h4>
+              <div id="item-7-1">
+
+                <p class="ms-3">-Mediante este código intentamos que el microbit por bucle y utilizando la
+                  radiofrecuencia al alejarse el emisor del receptor (con un valor menor a -80 dbm) active una sonido
+                  indicando si está en el rango o no.
+
+                  Luego de la asistencia del profesor y reiteradas pruebas nos encontramos con la limitante de la
+                  radiofrecuencia. Esto se debe a que en dicho método no nos da los valores estimados esperados para
+                  poder desarrollar el proyecto correctamente.
+                  Optamos por probar la alternativa del acelerómetro que cuenta el microbit para seguir desarrollando
+                  pruebas.</p>
+                <button type="button" class="btn btnColor btn-primary text" data-bs-toggle="modal"
+                  data-bs-target="#staticBackdrop">
+                  Ver código
+                </button>
+                <div class="modal fade modal-xl" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Código 25/09/2024</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body text-start">
+                        <pre>
+EMISOR:
+from microbit import *
+import radio
+
+# Configurar la radio
+radio.on()
+radio.config(channel=7)  # Elige un canal para que los dos micro:bits se comuniquen
+
+while True:
+  # Detectar si el micro:bit es sacudido bruscamente
+  if accelerometer.was_gesture("shake"):
+      # Obtener los datos del acelerómetro
+      x = accelerometer.get_x()
+      y = accelerometer.get_y()
+      z = accelerometer.get_z()
+      
+      # Crear el mensaje con los datos del acelerómetro
+      mensaje = "{},{},{}".format(x, y, z)
+      
+      # Enviar el mensaje por radio
+      radio.send(mensaje)
+      
+      # Reproducir un sonido fuerte en el buzzer conectado a pin0
+      display.show(Image.SURPRISED)
+      pin0.write_digital(1)  # Activa el buzzer
+      sleep(1000)  # Mantener el buzzer activo durante 1 segundo
+      pin0.write_digital(0)  # Desactivar el buzzer
+      display.clear()
+      
+  sleep(100)  # Evitar un bucle demasiado rápido
+
+----------------------------------------------------------------------------------------------------------
+
+RECEPTOR:
+from microbit import *
+import radio
+
+# Configurar la radio
+radio.on()
+radio.config(channel=7)  # Asegúrate de que el canal sea el mismo que el emisor
+
+while True:
+  # Recibir mensajes por radio
+  mensaje = radio.receive()
+  
+  if mensaje:
+      # El mensaje contiene los valores del acelerómetro en formato "x,y,z"
+      datos = mensaje.split(",")
+      
+      if len(datos) == 3:
+          try:
+              x = int(datos[0])
+              y = int(datos[1])
+              z = int(datos[2])
+              
+              # Mostrar los valores del acelerómetro en el micro:bit receptor
+              display.scroll("X:{} Y:{} Z:{}".format(x, y, z))
+              
+              # Reproducir un sonido fuerte en el buzzer del receptor
+              display.show(Image.SURPRISED)
+              pin0.write_digital(1)  # Activa el buzzer
+              sleep(1000)  # Mantener el buzzer activo durante 1 segundo
+              pin0.write_digital(0)  # Desactivar el buzzer
+              display.clear()
+          except:
+              pass  # Evitar errores si los datos no son válidos
+  sleep(100)
+                    </pre>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
       </div>
+    </section>
+    <section>
+      <h2>Código del emisor y receptor</h2>
+      <div class="card-group text-center">
+        <div class="card">
+          <div class="card-body">
+            <button type="button" class="btn btnColor btn-primary text" data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop">
+              Ver código emisor
+            </button>
+            <div class="modal fade modal-xl" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+              tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Código emisor 02/10/2024</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body text-start">
+                    <pre>
+from microbit import *
+import radio
+
+radio.on()
+radio.config(channel=7)
+
+umbral_movimiento = 600
+x_anterior = accelerometer.get_x()
+y_anterior = accelerometer.get_y()
+z_anterior = accelerometer.get_z()
+
+ultimo_keep_alive = running_time()
+
+while True:
+    x_actual = accelerometer.get_x()
+    y_actual = accelerometer.get_y()
+    z_actual = accelerometer.get_z()
+    
+    diferencia_x = abs(x_actual - x_anterior)
+    diferencia_y = abs(y_actual - y_anterior)
+    diferencia_z = abs(z_actual - z_anterior)
+    
+    if diferencia_x > umbral_movimiento or diferencia_y > umbral_movimiento or diferencia_z > umbral_movimiento:
+        mensaje = "{},{},{}".format(x_actual, y_actual, z_actual)
+        radio.send(mensaje)
+        display.show(Image.SURPRISED)
+        pin0.write_digital(1)
+        sleep(1000)
+        pin0.write_digital(0)
+        display.clear()
+
+    if running_time() - ultimo_keep_alive >= 30000:#30seg
+        radio.send(":)")
+        ultimo_keep_alive = running_time()
+        sleep(100)
+
+                    </pre>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <button type="button" class="btn btnColor btn-primary text" data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop">
+              Ver código receptor
+            </button>
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+              aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Código receptor 02/10/2024</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body text-start">
+                    <pre>
+from microbit import *
+import radio
+
+radio.on()
+radio.config(channel=7)
+
+while True:
+    mensaje = radio.receive()
+    
+    if mensaje:
+        if mensaje == ":)":
+            display.show(Image.HAPPY)
+            sleep(1000)
+            display.clear()
+        else:
+            datos = mensaje.split(",")
+            
+            if len(datos) == 3:
+                try:
+                    x = int(datos[0])
+                    y = int(datos[1])
+                    z = int(datos[2])
+                    
+                    display.show(Image.SKULL)
+                    pin0.write_digital(1)
+                    sleep(1000)
+                    pin0.write_digital(0)
+                    display.clear()
+                except:
+                    pass
+    
+    sleep(100)
+
+                    </pre>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </section>
   </main>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

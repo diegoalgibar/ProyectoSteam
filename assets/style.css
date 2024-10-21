@@ -54,3 +54,6 @@ section#secCron>div{
     max-height: 200px;
     overflow-y: auto;
 }
+.card-body>.modal{
+    max-height: none;
+}
