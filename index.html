@@ -436,15 +436,9 @@ while True:
               <h4>02/10/2024</h4>
               <div id="item-7-1">
 
-                <p class="ms-3">-Mediante este código intentamos que el microbit por bucle y utilizando la
-                  radiofrecuencia al alejarse el emisor del receptor (con un valor menor a -80 dbm) active una sonido
-                  indicando si está en el rango o no.
-
-                  Luego de la asistencia del profesor y reiteradas pruebas nos encontramos con la limitante de la
-                  radiofrecuencia. Esto se debe a que en dicho método no nos da los valores estimados esperados para
-                  poder desarrollar el proyecto correctamente.
-                  Optamos por probar la alternativa del acelerómetro que cuenta el microbit para seguir desarrollando
-                  pruebas.</p>
+                <p class="ms-3">Al tener otra charla con el profesor nos sugiere agregar un "keep-alive" al código.
+                  Con esto logramos que el emisor envíe un mensaje de una cara ":)" al receptor cada 30 segundos para mostrar que el receptor microbit está encendido y funcionando correctamente.
+                  .</p>
                 <button type="button" class="btn btnColor btn-primary text" data-bs-toggle="modal"
                   data-bs-target="#codigo2_10">
                   Ver código
@@ -454,7 +448,7 @@ while True:
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Código 25/09/2024</h1>
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Código 02/10/2024</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body text-start">
@@ -463,69 +457,75 @@ EMISOR:
 from microbit import *
 import radio
 
-# Configurar la radio
 radio.on()
-radio.config(channel=7)  # Elige un canal para que los dos micro:bits se comuniquen
+radio.config(channel=7)
+
+umbral_movimiento = 600
+x_anterior = accelerometer.get_x()
+y_anterior = accelerometer.get_y()
+z_anterior = accelerometer.get_z()
+
+ultimo_keep_alive = running_time()
 
 while True:
-  # Detectar si el micro:bit es sacudido bruscamente
-  if accelerometer.was_gesture("shake"):
-      # Obtener los datos del acelerómetro
-      x = accelerometer.get_x()
-      y = accelerometer.get_y()
-      z = accelerometer.get_z()
-      
-      # Crear el mensaje con los datos del acelerómetro
-      mensaje = "{},{},{}".format(x, y, z)
-      
-      # Enviar el mensaje por radio
-      radio.send(mensaje)
-      
-      # Reproducir un sonido fuerte en el buzzer conectado a pin0
-      display.show(Image.SURPRISED)
-      pin0.write_digital(1)  # Activa el buzzer
-      sleep(1000)  # Mantener el buzzer activo durante 1 segundo
-      pin0.write_digital(0)  # Desactivar el buzzer
-      display.clear()
-      
-  sleep(100)  # Evitar un bucle demasiado rápido
+    x_actual = accelerometer.get_x()
+    y_actual = accelerometer.get_y()
+    z_actual = accelerometer.get_z()
+    
+    diferencia_x = abs(x_actual - x_anterior)
+    diferencia_y = abs(y_actual - y_anterior)
+    diferencia_z = abs(z_actual - z_anterior)
+    
+    if diferencia_x > umbral_movimiento or diferencia_y > umbral_movimiento or diferencia_z > umbral_movimiento:
+        mensaje = "{},{},{}".format(x_actual, y_actual, z_actual)
+        radio.send(mensaje)
+        display.show(Image.SURPRISED)
+        pin0.write_digital(1)
+        sleep(1000)
+        pin0.write_digital(0)
+        display.clear()
+
+    if running_time() - ultimo_keep_alive >= 30000:#30seg
+        radio.send(":)")
+        ultimo_keep_alive = running_time()
+        sleep(100)
 
 ----------------------------------------------------------------------------------------------------------
 
 RECEPTOR:
+
 from microbit import *
 import radio
 
-# Configurar la radio
 radio.on()
-radio.config(channel=7)  # Asegúrate de que el canal sea el mismo que el emisor
+radio.config(channel=7)
 
 while True:
-  # Recibir mensajes por radio
-  mensaje = radio.receive()
-  
-  if mensaje:
-      # El mensaje contiene los valores del acelerómetro en formato "x,y,z"
-      datos = mensaje.split(",")
-      
-      if len(datos) == 3:
-          try:
-              x = int(datos[0])
-              y = int(datos[1])
-              z = int(datos[2])
-              
-              # Mostrar los valores del acelerómetro en el micro:bit receptor
-              display.scroll("X:{} Y:{} Z:{}".format(x, y, z))
-              
-              # Reproducir un sonido fuerte en el buzzer del receptor
-              display.show(Image.SURPRISED)
-              pin0.write_digital(1)  # Activa el buzzer
-              sleep(1000)  # Mantener el buzzer activo durante 1 segundo
-              pin0.write_digital(0)  # Desactivar el buzzer
-              display.clear()
-          except:
-              pass  # Evitar errores si los datos no son válidos
-  sleep(100)
+    mensaje = radio.receive()
+    
+    if mensaje:
+        if mensaje == ":)":
+            display.show(Image.HAPPY)
+            sleep(1000)
+            display.clear()
+        else:
+            datos = mensaje.split(",")
+            
+            if len(datos) == 3:
+                try:
+                    x = int(datos[0])
+                    y = int(datos[1])
+                    z = int(datos[2])
+                    
+                    display.show(Image.SKULL)
+                    pin0.write_digital(1)
+                    sleep(1000)
+                    pin0.write_digital(0)
+                    display.clear()
+                except:
+                    pass
+    
+    sleep(100)
                     </pre>
                       </div>
                       <div class="modal-footer">
@@ -542,7 +542,7 @@ while True:
       </div>
     </section>
     <section>
-      <h2>Código del emisor y receptor</h2>
+      <h2>Últma versión del código del emisor y receptor</h2>
       <div class="card-group text-center">
         <div class="card">
           <div class="card-body">
