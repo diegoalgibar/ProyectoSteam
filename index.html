@@ -180,6 +180,18 @@
 
       </div>
     </section>
+    <section id="secObj">
+      <div class="container">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Links</h4>
+            <p class="card-text">Link de Documentacion Tecnica:<A HREF="https://docs.google.com/document/d/11H3qMvkk8NzY2PjWY77_mwmw-9F4iW_SjmT2dvOi1KI/edit?usp=sharing"> Click Aqui</A> <br>
+            Link del video sobre el funcionamiento:<A HREF="https://drive.google.com/file/d/1OW_mP43NZi5hab3dwlie07IGOSuoeNnz/view?usp=sharing">Click Aqui</A></p>
+          </div>
+        </div>
+
+      </div>
+    </section>
     <section id="secMat">
       <div class="container">
         <h2>Materiales</h2>
@@ -258,6 +270,15 @@
                 <nav class="nav nav-pills flex-column">
                 </nav>
                 <a class="nav-link" href="#item-8">09/10/2024</a>
+                <nav class="nav nav-pills flex-column">
+                </nav>
+                <a class="nav-link" href="#item-9">16/10/2024</a>
+                <nav class="nav nav-pills flex-column">
+                </nav>
+                <a class="nav-link" href="#item-10">23/10/2024</a>
+                <nav class="nav nav-pills flex-column">
+                </nav>
+                <a class="nav-link" href="#item-11">30/10/2024</a>
                 <nav class="nav nav-pills flex-column">
                 </nav>
               </nav>
@@ -343,7 +364,16 @@
                 <h4>25/09/2024</h4>
                 <div id="item-6-1">
 
-                  <p class="ms-3">-Mostramos código hasta la fecha:</p>
+                  <p class="ms-3">Mediante este código intentamos que el microbit por bucle y utilizando la radiofrecuencia al alejarse el emisor del receptor (con un valor menor a -80 dbm) active una sonido indicando si está en el rango o no (Adjunto imágen). <br>
+
+                    Luego de la asistencia del profesor y reiteradas pruebas nos encontramos con la limitante de la radiofrecuencia. Esto se debe a que en dicho método no nos da los valores estimados esperados para poder desarrollar el proyecto correctamente.<br>
+                    Optamos por probar la alternativa del acelerómetro que cuenta el microbit para seguir desarrollando pruebas.<br>
+                    
+                    En este código utilizamos la función shake, La cual luego de sacar conjeturas junto al profesor vemos que no es muy efectiva por lo cual procedemos a cambiarla y setear manualmente los ejes X,Y,Z.<br>
+                    
+                    Programando nuestra propia función shake utilizando los ejes x,y,z del acelerómetro pudimos definir un umbral el cual al ser sobrepasado emite un sonido. Para esto hacemos que el emisor envíe la información de la variación en todos sus ejes. También mediante una estructura IF hacemos que compare la diferencia entre su posición anterior y la actual al realizar un movimiento con respecto al umbral ya definido (500). Siendo así que si la diferencia supera dicho valor , envía un mensaje activando el buzzer.<br>
+                  
+                    <br>  -Mostramos código hasta la fecha:</p>
                   <button type="button" class="btn btnColor btn-primary text" data-bs-toggle="modal"
                     data-bs-target="#codigo25_9">
                     Ver código
@@ -609,20 +639,34 @@ while True:
                   <h4>09/10/2024</h4>
                   <div id="item-8-1">
 
-                    <p class="ms-3">-Debido a que 2 de los 3 integrantes del grupo trabajan , por dicho causa no pudimos
-                      asistir a clase y seguir desarrollando el proyecto. De igual manera , se siguen pensando ideas
-                      para nuevas funcionalidades de manera individual.
+                    <p class="ms-3">Avanzamos en la web, corrigiendo errores al mostrar codigo, tanto como agregando el contenido faltante a la misma.
                     </p>
                   </div>
                 </div>
               </div>
+              <h4>16/10/2024</h4>
+              <div id="item-9">
 
+                <p class="ms-3">-Debido a que 2 de los 3 integrantes del grupo trabajan , por dicho causa no pudimos asistir a clase y seguir desarrollando el proyecto. De igual manera , se siguen pensando ideas para nuevas funcionalidades de manera individual.
+              </div>
+              <h4>23/10/2024</h4>
+              <div id="item-10">
+
+                <p class="ms-3">-Continuamos trabajando en la web, agregando contenido faltante.<br>
+                  Planeamos la Documentacion Tecnica de nuestro proyecto e investigamos como incluir el motor de vibracion en el Microbit Receptor para que al momento de qe el acelerómetro cambie de manera bruzca las coordenadas, vibre.
+              </div>
+              <h4>30/10/2024</h4>
+              <div id="item-11">
+                <p class="ms-3">-Realizamos el diagrama correspondiente de coneccion de los dispositivos (buzzer y motor de vibracion) al Microbit, Agregamos las fechas faltantes y arreglamos informacion incorrecta en las fechas anteriores.<br>
+                  Ademas avanzamos en informe 4.
+              </div>
+            </div>
             </div>
           </div>
         </div>
     </section>
     <section>
-      <h2>Últma versión del código del emisor y receptor</h2>
+      <h2>Última versión del código del emisor y receptor</h2>
       <div class="card-group text-center">
         <div class="card">
           <div class="card-body">
@@ -746,8 +790,46 @@ while True:
           </div>
         </div>
       </div>
-
+      <h2>Imagenes</h2>
+      <div class="card-group text-center">
+        <div class="card">
+          <div class="card-body">
+            <img src="assets/res/imagenReal.jpeg" class="d-block w-100"
+            alt="...">
+            <div class="modal fade modal-xl" id="emisor2_10" data-bs-backdrop="static" data-bs-keyboard="false"
+              tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Código emisor 02/10/2024</h1>
+                  </div>
+                  <div class="modal-body text-start">
+                    <pre>
+                    </pre>
+                  </div>
+                  <div class="modal-footer">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <img src="assets/res/Diagram.jpeg" class="d-block w-100"
+            alt="...">
+            <div class="modal fade" id="receptor2_10" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+              aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Código receptor 02/10/2024</h1>
+                  </div>
+                  <div class="modal-body text-start">
+                    <pre>
+                    </pre>
     </section>
+    
   </main>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
